@@ -20,8 +20,7 @@ describe('Form Tests', () => {
     cy.get('#mushrooms').check();
     cy.get('#jalapenos').check();
     cy.get('button').click();
-
-  })
+  });
 });
 
 describe('End to End Test', () => {
