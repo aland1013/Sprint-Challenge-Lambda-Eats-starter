@@ -28,14 +28,26 @@ const Label = styled.label`
 
 const Input = styled.input`
   margin-top: 10px;
+  width: 60%;
+  height: 20px;
+`;
+
+const P = styled.p`
+  color: red;
 `;
 
 const Select = styled.select`
   margin-top: 10px;
 `;
 
+const ToppingLabel = styled.label`
+  margin-top: 10px;
+`;
+
 const Textarea = styled.textarea`
   margin-top: 10px;
+  width: 80%;
+  height: 80px;
 `;
 
 const Button = styled.button`
@@ -145,7 +157,7 @@ const Form = () => {
             value={formState.name}
           />
           <div>
-          {errors.name.length > 0 ? <p>{errors.name}</p> : null}
+          {errors.name.length > 0 ? <P>{errors.name}</P> : null}
           </div>
         </Label>
         <Label htmlFor="size">
@@ -159,8 +171,8 @@ const Form = () => {
         </Label>
         <Label htmlFor="toppings">
           Add Toppings
-          <label htmlFor="pepperoni">
-          <Input
+          <ToppingLabel htmlFor="pepperoni">
+          <input
             type="checkbox"
             id="pepperoni"
             name="pepperoni"
@@ -168,9 +180,9 @@ const Form = () => {
             onChange={inputChange}
           />
           Pepperoni            
-          </label>
-          <label htmlFor="mushrooms">
-          <Input
+          </ToppingLabel>
+          <ToppingLabel htmlFor="mushrooms">
+          <input
             type="checkbox"
             id="mushrooms"
             name="mushrooms"
@@ -178,9 +190,9 @@ const Form = () => {
             onChange={inputChange}
           />
           Mushrooms            
-          </label>
-          <label htmlFor="blackOlives">
-          <Input
+          </ToppingLabel>
+          <ToppingLabel htmlFor="blackOlives">
+          <input
             type="checkbox"
             id="blackOlives"
             name="blackOlives"
@@ -188,9 +200,9 @@ const Form = () => {
             onChange={inputChange}
           />
           Black Olives            
-          </label>
-          <label htmlFor="jalapenos">
-          <Input
+          </ToppingLabel>
+          <ToppingLabel htmlFor="jalapenos">
+          <input
             type="checkbox"
             id="jalapenos"
             name="jalapenos"
@@ -198,7 +210,7 @@ const Form = () => {
             onChange={inputChange}
           />
           Jalapenos            
-          </label>
+          </ToppingLabel>
         </Label>
         <Label htmlFor="instructions">
           Special Instructions

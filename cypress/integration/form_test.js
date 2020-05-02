@@ -1,6 +1,6 @@
 /*global cy */
 
-describe('Tests', () => {
+describe('Form Tests', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/pizza');
   });
@@ -22,4 +22,14 @@ describe('Tests', () => {
     cy.get('button').click();
 
   })
+});
+
+describe('End to End Test', () => {
+  it('Allows User to navigate from home page to form and order a pizza', () => {
+    cy.visit('localhost:3000');
+    cy.get('button').click();
+    cy.get('#name').type('Adam');
+    cy.get('#size').select('L');
+    cy.get('#pepperoni').check();
+  });
 });
