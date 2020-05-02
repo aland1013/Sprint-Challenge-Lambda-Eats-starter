@@ -148,7 +148,7 @@ const Form = () => {
       <H2>Build Your Own Pizza</H2>
       <FORM onSubmit={formSubmit}>
         <Label htmlFor="name">
-          Name
+          Name:
           <Input
             type="text"
             id="name"
@@ -161,7 +161,7 @@ const Form = () => {
           </div>
         </Label>
         <Label htmlFor="size">
-          Choice of Size
+          Choice of Size:
           <Select id="size" name="size" onChange={inputChange} value={formState.size}>
             <option value="XL">XL</option>
             <option value="L">L</option>
@@ -170,7 +170,7 @@ const Form = () => {
           </Select>
         </Label>
         <Label htmlFor="toppings">
-          Add Toppings
+          Add Toppings:
           <ToppingLabel htmlFor="pepperoni">
           <input
             type="checkbox"
@@ -213,7 +213,7 @@ const Form = () => {
           </ToppingLabel>
         </Label>
         <Label htmlFor="instructions">
-          Special Instructions
+          Special Instructions:
           <Textarea
             id="instructions"
             name="instructions"
