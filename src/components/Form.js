@@ -7,22 +7,24 @@ const Form = () => {
 
   const [formState, setFormState] = useState({
     name: '',
-    size: '',
+    size: 'XL',
     pepperoni: false,
     mushrooms: false,
     blackOlives: false,
-    jalapenos: false
+    jalapenos: false,
+    instructions: ''
   });
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const [errors, setErrors] = useState({
     name: '',
-    size: '',
+    size: 'XL',
     pepperoni: false,
     mushrooms: false,
     blackOlives: false,
-    jalapenos: false
+    jalapenos: false,
+    instructions: ''
   });
 
   const formSchema = yup.object().shape({
@@ -31,7 +33,8 @@ const Form = () => {
     pepperoni: yup.boolean(),
     mushrooms: yup.boolean(),
     blackOlives: yup.boolean(),
-    jalapenos: yup.boolean()
+    jalapenos: yup.boolean(),
+    instructions: yup.string()
   });
 
   const validateChange = (e) => {
@@ -50,6 +53,26 @@ const Form = () => {
     });
   }, [formState]);
 
+  const formSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post('https://reqres.in/api/users', formState)
+      .then(response => {
+        console.log(response.data);
+        setPost(response.data);
+        setFormState({
+          name: '',
+          size: 'XL',
+          pepperoni: false,
+          mushrooms: false,
+          blackOlives: false,
+          jalapenos: false,
+          instructions: ''
+        });
+      })
+      .catch(err => console.log(err.response));
+  }
+
   const inputChange = (e) => {
     e.persist();
     const newFormData = {
@@ -63,7 +86,7 @@ const Form = () => {
   return (
     <>
       <h2>Build Your Own Pizza</h2>
-      <form>
+      <form onSubmit={formSubmit}>
         <label htmlFor="name">
           Name
           <input
@@ -73,10 +96,13 @@ const Form = () => {
             onChange={inputChange}
             value={formState.name}
           />
+          <div>
+          {errors.name.length > 0 ? <p>{errors.name}</p> : null}
+          </div>
         </label>
         <label htmlFor="size">
           Choice of Size
-          <select id="size" name="size" onChange={inputChange} >
+          <select id="size" name="size" onChange={inputChange} value={formState.size}>
             <option value="XL">XL</option>
             <option value="L">L</option>
             <option value="M">M</option>
