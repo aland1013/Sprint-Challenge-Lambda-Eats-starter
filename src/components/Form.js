@@ -1,6 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const H2 = styled.h2`
+  text-align: center;
+`;
+
+const FORM = styled.form`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 8px;
+  width: 350px;
+  margin: auto;
+  padding: 25px;
+  background-color: #f8f8f8;
+`;
+
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+  font-size: 16px;
+`;
+
+const Input = styled.input`
+  margin-top: 10px;
+`;
+
+const Select = styled.select`
+  margin-top: 10px;
+`;
+
+const Textarea = styled.textarea`
+  margin-top: 10px;
+`;
+
+const Button = styled.button`
+  width: 150px;
+  display: inline-block;
+  padding: 8px 11px;
+  font-size: 16px;
+  border: 0;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+`;
 
 const Form = () => {
   const [post, setPost] = useState([]);
@@ -85,11 +133,11 @@ const Form = () => {
 
   return (
     <>
-      <h2>Build Your Own Pizza</h2>
-      <form onSubmit={formSubmit}>
-        <label htmlFor="name">
+      <H2>Build Your Own Pizza</H2>
+      <FORM onSubmit={formSubmit}>
+        <Label htmlFor="name">
           Name
-          <input
+          <Input
             type="text"
             id="name"
             name="name"
@@ -99,20 +147,20 @@ const Form = () => {
           <div>
           {errors.name.length > 0 ? <p>{errors.name}</p> : null}
           </div>
-        </label>
-        <label htmlFor="size">
+        </Label>
+        <Label htmlFor="size">
           Choice of Size
-          <select id="size" name="size" onChange={inputChange} value={formState.size}>
+          <Select id="size" name="size" onChange={inputChange} value={formState.size}>
             <option value="XL">XL</option>
             <option value="L">L</option>
             <option value="M">M</option>
             <option value="S">S</option>
-          </select>
-        </label>
-        <label htmlFor="toppings">
+          </Select>
+        </Label>
+        <Label htmlFor="toppings">
           Add Toppings
           <label htmlFor="pepperoni">
-          <input
+          <Input
             type="checkbox"
             id="pepperoni"
             name="pepperoni"
@@ -122,7 +170,7 @@ const Form = () => {
           Pepperoni            
           </label>
           <label htmlFor="mushrooms">
-          <input
+          <Input
             type="checkbox"
             id="mushrooms"
             name="mushrooms"
@@ -132,7 +180,7 @@ const Form = () => {
           Mushrooms            
           </label>
           <label htmlFor="blackOlives">
-          <input
+          <Input
             type="checkbox"
             id="blackOlives"
             name="blackOlives"
@@ -142,7 +190,7 @@ const Form = () => {
           Black Olives            
           </label>
           <label htmlFor="jalapenos">
-          <input
+          <Input
             type="checkbox"
             id="jalapenos"
             name="jalapenos"
@@ -151,20 +199,19 @@ const Form = () => {
           />
           Jalapenos            
           </label>
-        </label>
-        <label htmlFor="instructions">
+        </Label>
+        <Label htmlFor="instructions">
           Special Instructions
-          <textarea
+          <Textarea
             id="instructions"
             name="instructions"
             onChange={inputChange}
             value={formState.instructions}
           />
-        </label>
-        <button type="submit" disabled={isButtonDisabled}>Add to Order</button>
-      </form>
+        </Label>
+        <Button type="submit" disabled={isButtonDisabled}>Add to Order</Button>
+      </FORM>
     </>
-    
   );
 }
 
